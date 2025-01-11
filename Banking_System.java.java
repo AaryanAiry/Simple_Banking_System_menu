@@ -2,15 +2,15 @@ import java.util.*;
 
 class Banking_System {
     static double balance = 0.0;
-    static Map<String, String> userDatabase = new HashMap<>(); // Stores username and password
-    static Map<String, Double> accountBalances = new HashMap<>(); // Stores user balances
+    static Map<String, String> userDatabase = new HashMap<>(); 
+    static Map<String, Double> accountBalances = new HashMap<>(); 
     static Scanner sc = new Scanner(System.in);
-    static String loggedInUser = null; // Tracks the currently logged-in user
+    static String loggedInUser = null; 
 
-    // Constructor
+    
     Banking_System() {}
 
-    // Create Account: User registers with a username and password
+   
     public void createAccount() {
         System.out.print("Enter username: ");
         String username = sc.next();
@@ -21,12 +21,12 @@ class Banking_System {
             System.out.print("Enter password: ");
             String password = sc.next();
             userDatabase.put(username, password);
-            accountBalances.put(username, 0.0); // Initialize balance to 0
+            accountBalances.put(username, 0.0); 
             System.out.println("Account created successfully!");
         }
     }
 
-    // Login: Check if the user exists and password matches
+  
     public boolean login(String username, String password) {
         if (userDatabase.containsKey(username)) {
             if (userDatabase.get(username).equals(password)) {
@@ -43,13 +43,13 @@ class Banking_System {
         }
     }
 
-    // Logout: Log the user out
+    
     public void logout() {
         loggedInUser = null;
         System.out.println("Logged out successfully!");
     }
 
-    // Deposit: Add money to the user's balance
+   
     public void deposit(double amount) {
         if (amount > 0) {
             double newBalance = accountBalances.get(loggedInUser) + amount;
@@ -60,7 +60,7 @@ class Banking_System {
         }
     }
 
-    // Withdraw: Deduct money from the user's balance
+    
     public void withdraw(double amount) {
         double currentBalance = accountBalances.get(loggedInUser);
         if (amount > 0 && amount <= currentBalance) {
@@ -72,13 +72,13 @@ class Banking_System {
         }
     }
 
-    // Check balance: Display current balance of the user
+ 
     public void check_balance() {
         double currentBalance = accountBalances.get(loggedInUser);
         System.out.println("Your current balance is: " + currentBalance);
     }
 
-    // Method to display the menu in a table-like format
+
     public static void displayMainMenu() {
         System.out.println("\n+----------------------------+");
         System.out.println("|     Welcome to XYZ Bank    |");
@@ -91,7 +91,7 @@ class Banking_System {
         System.out.println("+----------------------------+");
     }
 
-    // Method to display the logged-in menu in a table-like format
+
     public static void displayUserMenu() {
         System.out.println("\n+----------------------------+");
         System.out.println("|      Welcome " + loggedInUser + "      |");
@@ -105,13 +105,13 @@ class Banking_System {
         System.out.println("+----------------------------+");
     }
 
-    // Main method to run the banking system
+
     public static void main(String[] args) {
         Banking_System obj = new Banking_System();
         
         while (true) {
             if (loggedInUser == null) {
-                // If no user is logged in, show the main menu
+     
                 displayMainMenu();
                 
                 int choice = sc.nextInt();
@@ -142,7 +142,7 @@ class Banking_System {
                         System.out.println("Invalid choice. Please try again.");
                 }
             } else {
-                // If the user is logged in, show only restricted options
+      
                 displayUserMenu();
                 
                 int choice = sc.nextInt();
